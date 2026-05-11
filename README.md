@@ -113,10 +113,76 @@ All knobs are env vars. See `.env.example` for the full list.
 - `/reset` — clear this chat's conversation history
 - `/whoami` — show your Telegram numeric id and whether you're authorized (handy during setup)
 
-## Tool surface
+## Features
+
+What you can ask the bot to do (or call directly via the MCP server from any host). Everything below maps to one or more of the 67 tools listed at the bottom of this section.
+
+**Boards & workspaces**
+- List boards, list workspaces (organizations), list boards in a workspace
+- Create, rename, archive, or permanently delete boards
+- Star and unstar boards for quick access; list starred boards
+- Fetch a board's full detail (lists + labels + members) in one call
+
+**Lists (columns)**
+- Create lists; rename, reorder, archive, or restore them
+- Move a list to another board
+- Archive every card in a list, or move every card to another list (same or different board)
+
+**Cards — core**
+- Create cards with title, description, due date, start date, assignees, and labels in one call
+- Move cards between lists; reorder within a list
+- Copy a card to another list — choose what to keep (attachments, checklists, comments, due, labels, members)
+- Archive cards (reversible) or delete permanently
+- Resolve a card from a Trello URL, short link, or id (paste-friendly)
+- Free-text search cards across all your boards
+
+**Dates, reminders, completion**
+- Set due dates and start dates (ISO 8601)
+- Set a due-reminder N minutes before (e.g. `60` = one hour before, `1440` = one day before, `-1` to disable)
+- Mark a due as complete / incomplete
+
+**Card content**
+- Add, edit, and delete comments
+- Attach URLs to cards (with optional display name); list and delete attachments
+- Set or clear card covers — solid color or attachment-backed, with brightness/size options
+- Vote on cards, unvote, list who voted
+
+**Checklists**
+- Create a checklist with initial items in one call
+- Rename or reposition checklists; delete entire checklists
+- Add, rename, reorder, complete/uncomplete, or delete individual items
+- Set per-item due dates and assign members to items
+
+**Labels**
+- List, create, rename, recolor, and delete board labels (10 Trello colors supported)
+- Attach and detach labels on cards
+- List cards on a board or in a list carrying a specific label
+
+**Members**
+- Search Trello users globally by name / username / email
+- List members of a board
+- Assign and unassign members on cards
+- List cards on a board assigned to a specific member
+
+**Discovery & queries**
+- *"What's on my plate"* — cards assigned to you across all boards
+- *"What's due in the next N hours"* — configurable window
+- *"What's overdue"* — past-due, not-yet-completed cards
+- Card activity history (creates, moves, comments, edits)
+
+**Notifications**
+- List notifications (all or unread only)
+- Mark one notification or all notifications as read
+
+**Custom fields (read-only)**
+- List custom field definitions on a board
+- Read custom field values set on a card
+
+**Identity**
+- `get_me` — id, username, full name, email, and workspace ids of the authenticated user
 
 <details>
-<summary><b>67 tools across 13 areas</b> (click to expand)</summary>
+<summary><b>Full tool inventory</b> — 67 tools across 13 areas (click to expand)</summary>
 
 - **Workspace / profile** — `get_me`, `get_workspace_summary`, `list_workspaces`, `list_workspace_boards`, `list_starred_boards`, `star_board`, `unstar_board`
 - **Boards** — `list_boards`, `get_board`, `create_board`, `update_board`, `delete_board`
