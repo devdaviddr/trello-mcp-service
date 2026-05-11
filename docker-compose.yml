@@ -1,0 +1,11 @@
+services:
+  bot:
+    build: .
+    container_name: trello-mcp-bot
+    env_file:
+      - .env
+    restart: unless-stopped
+    # The bot uses Telegram long-polling — no inbound ports needed.
+    # extra_hosts lets the container reach Ollama on the host if you switch OLLAMA_HOST to host.docker.internal.
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

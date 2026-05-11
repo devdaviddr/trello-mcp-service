@@ -1,0 +1,26 @@
+{
+  "name": "trello-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/bot/index.js",
+    "dev": "tsx watch src/bot/index.ts",
+    "mcp": "tsx src/mcp-server/index.ts",
+    "mcp:built": "node dist/mcp-server/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "dotenv": "^16.4.5",
+    "grammy": "^1.30.0",
+    "ollama": "^0.5.11",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
