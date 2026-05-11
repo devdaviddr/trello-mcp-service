@@ -1,8 +1,8 @@
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
-import { TrelloClient } from "./trello.js";
-import { tools } from "./tools.js";
+import { TrelloClient } from "./trello/index.js";
+import { tools } from "./tools/index.js";
 
 const key = process.env.TRELLO_API_KEY;
 const token = process.env.TRELLO_API_TOKEN;
