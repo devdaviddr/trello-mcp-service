@@ -26,11 +26,32 @@ Bot:  Added "Steps" checklist to "Fix flaky CI" (4 items).
 ## Architecture
 
 ```
-Telegram  ──▶  bot (grammy) ──▶  agent loop (ollama SDK) ──▶  Ollama @ LAN
-                  │                       │
-                  │                       └─▶  MCP client (stdio) ─┐
-                  │                                                │
-                  └────────────────────────────────────────────────┴─▶  MCP server (subprocess) ──▶ Trello REST
+                       ┌────────────────────┐
+                       │   Telegram user    │
+                       └──────────┬─────────┘
+                                  │ HTTPS
+                                  ▼
+                       ┌────────────────────┐
+                       │    Telegram API    │
+                       └──────────┬─────────┘
+                                  │ long-poll (HTTPS)
+══════════════════════════════════│══════════════════════ Docker host ══════
+                                  ▼
+   ┌──────────────── container: trello-mcp-bot ─────────────────────┐
+   │                                                                │
+   │      ┌──────────────────────────────────┐                      │
+   │      │           bot process            │ ── HTTP ─────────────┼──▶ ┌──────────────────────┐
+   │      │  grammy • ollama SDK • agent     │                      │    │  Ollama host (LAN)   │
+   │      └────────────────┬─────────────────┘                      │    │  qwen3-coder, …      │
+   │                       │ stdio (spawns child process)           │    └──────────────────────┘
+   │                       ▼                                        │
+   │      ┌──────────────────────────────────┐                      │
+   │      │      MCP server (subprocess)     │ ── HTTPS ────────────┼──▶ ┌──────────────────────┐
+   │      │          67 Trello tools         │                      │    │  Trello REST API     │
+   │      └──────────────────────────────────┘                      │    │  api.trello.com      │
+   │                                                                │    └──────────────────────┘
+   └────────────────────────────────────────────────────────────────┘
+═══════════════════════════════════════════════════════════════════════════
 ```
 
 The bot and MCP server run as separate processes communicating over stdio, so the MCP server is reusable standalone by any MCP host (Claude Desktop, Inspector, etc.) without the bot involved.
