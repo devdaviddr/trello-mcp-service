@@ -1,4 +1,4 @@
-# trello-mcp
+# Trello Telegram Bot with MCP 
 
 A Telegram chatbot that manages Trello through natural language, powered by a local LLM via Ollama. Trello is exposed as an [MCP](https://modelcontextprotocol.io) server with 67 tools; the bot is a tool-calling agent loop on top of Ollama.
 
